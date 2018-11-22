@@ -73,15 +73,44 @@ class Perceptron:
 		self.w = w
 		self.b = b
 
+	def stepFunc(self, x, weight, bias):
+		if sum(np.multiply(x, weight)) + bias > 0:
+			return 1
+		else:
+			return -1
+
 	def train(self, X, y, steps):
-		#training logic here
-		#input is array of features and labels
-		None
+		# training logic here
+		# input is array of features and labels
+		labels = []
+		for i in y:
+			if i == 0:
+				labels.append(-1)
+			else:
+				labels.append(i)
+
+		while steps:
+			prediction = []
+			for x, d in zip(X, labels):
+				steps -= 1
+				pred = self.stepFunc(x, self.w, self.b)
+				prediction.append(pred)
+				if pred != d:
+					self.w += (self.lr) * (np.multiply(d, x))
+			if prediction == labels:
+				break
 
 	def predict(self, X):
-		#Run model here
-		#Return array of predictions where there is one prediction for each set of features
-		return None
+		# Run model here
+		# Return array of predictions where there is one prediction for each set of features
+		solutions = []
+		for i in X:
+			pred = self.stepFunc(X[0], self.w, self.b)
+			if pred == -1:
+				pred = 0
+			solutions.append(pred)
+		# print(solutions)
+		return np.array(solutions)
 
 class MLP:
 	def __init__(self, w1, b1, w2, b2, lr):
