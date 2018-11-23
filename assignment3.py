@@ -105,7 +105,7 @@ class Perceptron:
 		# Return array of predictions where there is one prediction for each set of features
 		solutions = []
 		for i in X:
-			pred = self.stepFunc(X[0], self.w, self.b)
+			pred = self.stepFunc(i, self.w, self.b)
 			if pred == -1:
 				pred = 0
 			solutions.append(pred)
