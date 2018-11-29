@@ -50,7 +50,7 @@ class ID3:
 
 	def preprocess(self, data):
 		#Our dataset only has continuous data
-		norm_data = (data - self.range[0]) / (self.range[1] - self.range[0])
+		norm_data = np.clip((data - self.range[0]) / (self.range[1] - self.range[0]), 0, 1)
 		categorical_data = np.floor(self.bin_size*norm_data).astype(int)
 		return categorical_data
 
@@ -163,26 +163,37 @@ class FCLayer:
 
 	def __init__(self, w, b, lr):
 		self.lr = lr
-		self.w = w	#Each column represents all the weights going into an output node
+		self.w = w #Each column represents all the weights going into an output node
 		self.b = b
+		self.comp = None
+		self.input = None
 
-	def forward(self, input):
+	def forward(self, inpu):
 		#Write forward pass here
-		return None
+		self.input = inpu
+		self.comp = inpu.dot(self.w) + self.b
+		return  self.comp
 
 	def backward(self, gradients):
 		#Write backward pass here
-		return None	
+		deltaW = self.input.T.dot(gradients)
+		deltaB = np.sum(gradients,axis=0)
+		self.w -= self.lr*deltaW
+		self.b -= self.lr*deltaB
+		return gradients.dot(self.w.T)
+
 
 class Sigmoid:
 
 	def __init__(self):
-		None
+		self.comp = 0
 
 	def forward(self, input):
-		#Write forward pass here
-		return None
+		# Write forward pass here
+		self.comp = 1 / (1 + np.exp(-input))
+		return self.comp
 
 	def backward(self, gradients):
-		#Write backward pass here
-		return None	
+		# Write backward pass here
+		back = (gradients) * (1 - self.comp) * (self.comp)
+		return back
