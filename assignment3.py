@@ -93,32 +93,38 @@ class ID3:
             reqAttr = examples[:, i]
             label = examples[:, -1]
             result_gain[i] = self.informationGain(reqAttr, label)
-        ordered_gain = sorted(result_gain.items(), key=lambda x: x[1])
+        ordered_gain = sorted(result_gain.items(), key=lambda x: x[1], reverse=True)
+        # print(ordered_gain)
         return ordered_gain[0][0]
 
     def decision_tree_learning(self, examples, attributes, parent_examples):
-        unique_labels = np.unique(np.array(examples)[:, -1])
         if len(examples) == 0:
             return self.plurality_value(parent_examples)
-        elif len(unique_labels) == 1:
-            return unique_labels[0]
+        elif (len(np.unique(np.array(examples)[:, -1]))) == 1:
+            return np.unique(np.array(examples)[:, -1])[0]
         elif len(attributes) == 0:
             return self.plurality_value(examples)
         else:
             A = self.importance(attributes, examples)
-            #             print("A->>",A)
-            valuesInA = examples[:, A]
+            # print("A->>",A)
+            #             valuesInA = np.unique(examples[:, A])
+            valuesInA = np.array([0, 1, 2, 3])
             decisionTree = {A: {}}
             #             tree = decision_node(A, valuesInA)
             attributes.remove(A)
+            attr_send = copy.deepcopy(attributes)
             for value in valuesInA:
                 exs = [e for e in examples if e[A] == value]
                 #                 newAttr = copy.deepcopy(attributes)
                 #                 newAttr.remove(A)
-                subtree = self.decision_tree_learning(np.array(exs), attributes, examples)
+                subtree = self.decision_tree_learning(np.array(exs), attr_send, examples)
                 #                 subtree = self.decision_tree_learning(np.array(exs),newAttr, examples)
                 #                 tree.child[value] = subtree
+                # print("Values -- >",value)
                 decisionTree[A][value] = subtree
+                # print("subtree -->",subtree)
+                # print("decisiontree -->",decisionTree)
+
         return decisionTree
 
     def train(self, X, y):
@@ -127,6 +133,7 @@ class ID3:
         categorical_data = self.preprocess(X)
         tree = self.decision_tree_learning(np.hstack((categorical_data, y.reshape(categorical_data.shape[0], 1))), list(range(30)), [0])
         self.tree = tree
+        # print(tree)
         return tree
 
     def predict(self, X):
@@ -279,10 +286,11 @@ class FCLayer:
 class Sigmoid:
 
     def __init__(self):
-        self.comp = 0
+        self.comp = 0.0
 
     def forward(self, input):
         # Write forward pass here
+        #input = np.array(input, dtype='float128')
         self.comp = 1 / (1 + np.exp(-input))
         return self.comp
 
