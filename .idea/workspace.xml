@@ -13,16 +13,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assignment3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="266" column="24" lean-forward="true" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
+            <state relative-caret-position="339">
+              <caret line="133" column="159" selection-start-line="133" selection-start-column="159" selection-end-line="133" selection-end-column="159" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1544134667172" expanded="true" signature="1764:1773" ph="..." />
-                <marker date="1544134667172" expanded="true" signature="9257:9266" ph="..." />
+                <marker date="1544460013850" expanded="true" signature="1764:1773" ph="..." />
+                <marker date="1544460013850" expanded="true" signature="9174:9183" ph="..." />
               </folding>
             </state>
           </provider>
@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_assignment3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="86" column="16" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
+            <state relative-caret-position="143">
+              <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -141,19 +141,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11037674" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27234042" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.47659576" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2719547" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.47592068" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.40141845" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.22096318" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -162,24 +163,24 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assignment3.py">
+    <entry file="file://$PROJECT_DIR$/run_assignment3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="266" column="24" lean-forward="true" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
+        <state relative-caret-position="143">
+          <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1544134667172" expanded="true" signature="1764:1773" ph="..." />
-            <marker date="1544134667172" expanded="true" signature="9257:9266" ph="..." />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_assignment3.py">
+    <entry file="file://$PROJECT_DIR$/assignment3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="86" column="16" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
+        <state relative-caret-position="339">
+          <caret line="133" column="159" selection-start-line="133" selection-start-column="159" selection-end-line="133" selection-end-column="159" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1544460013850" expanded="true" signature="1764:1773" ph="..." />
+            <marker date="1544460013850" expanded="true" signature="9174:9183" ph="..." />
           </folding>
         </state>
       </provider>

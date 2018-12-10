@@ -44,11 +44,6 @@ class KNN:
         return np.array(solution)
 
 
-class decision_node:
-    def __init__(self, attribute, valuesInA):
-        self.attribute = attribute
-        self.child = dict()#dict.fromkeys(valuesInA , None)
-
 import math
 class ID3:
     def __init__(self, nbins, data_range):
@@ -94,7 +89,6 @@ class ID3:
             label = examples[:, -1]
             result_gain[i] = self.informationGain(reqAttr, label)
         ordered_gain = sorted(result_gain.items(), key=lambda x: x[1], reverse=True)
-        # print(ordered_gain)
         return ordered_gain[0][0]
 
     def decision_tree_learning(self, examples, attributes, parent_examples):
@@ -106,24 +100,14 @@ class ID3:
             return self.plurality_value(examples)
         else:
             A = self.importance(attributes, examples)
-            # print("A->>",A)
-            #             valuesInA = np.unique(examples[:, A])
-            valuesInA = np.array([0, 1, 2, 3])
+            valuesInA = np.arange(self.bin_size +1)
             decisionTree = {A: {}}
-            #             tree = decision_node(A, valuesInA)
             attributes.remove(A)
             attr_send = copy.deepcopy(attributes)
             for value in valuesInA:
                 exs = [e for e in examples if e[A] == value]
-                #                 newAttr = copy.deepcopy(attributes)
-                #                 newAttr.remove(A)
                 subtree = self.decision_tree_learning(np.array(exs), attr_send, examples)
-                #                 subtree = self.decision_tree_learning(np.array(exs),newAttr, examples)
-                #                 tree.child[value] = subtree
-                # print("Values -- >",value)
                 decisionTree[A][value] = subtree
-                # print("subtree -->",subtree)
-                # print("decisiontree -->",decisionTree)
 
         return decisionTree
 
@@ -131,9 +115,8 @@ class ID3:
         #training logic here
         #input is array of features and labels
         categorical_data = self.preprocess(X)
-        tree = self.decision_tree_learning(np.hstack((categorical_data, y.reshape(categorical_data.shape[0], 1))), list(range(30)), [0])
+        tree = self.decision_tree_learning(np.hstack((categorical_data, y.reshape(categorical_data.shape[0], 1))), list(range(categorical_data.shape[1])), None)
         self.tree = tree
-        # print(tree)
         return tree
 
     def predict(self, X):
@@ -143,24 +126,12 @@ class ID3:
         categorical_data = self.preprocess(X)
         for test in categorical_data:
             copyOfTree = copy.deepcopy(self.tree)
-            while copyOfTree != 1 or copyOfTree != 0:
-                node = list(copyOfTree.keys())[0]
-                branchValue = test[node]
-                ranges = copyOfTree[node].keys()
-
-                if branchValue not in ranges:
-                    copyOfTree = np.random.randint(2)
+            while copyOfTree not in [0,1]:
+                attr = list(copyOfTree.keys())[0]
+                child = test[attr]
+                copyOfTree = (copyOfTree[attr][child]).copy()
+                if copyOfTree in [0,1]:
                     predictions.append(copyOfTree)
-                    break
-                if isinstance(copyOfTree[node][branchValue], int):
-                    copyOfTree = (copyOfTree[node][branchValue]).copy()
-                else:
-                    copyOfTree = (copyOfTree[node][branchValue]).copy()
-                if copyOfTree == 0:
-                    predictions.append(0)
-                    break
-                if copyOfTree == 1:
-                    predictions.append(1)
                     break
 
         return np.array(predictions)
@@ -209,7 +180,6 @@ class Perceptron:
             if pred == -1:
                 pred = 0
             solutions.append(pred)
-        # print(solutions)
         return np.array(solutions)
 
 class MLP:
@@ -243,7 +213,6 @@ class MLP:
             pred = self.l2.forward(pred)
             pred = self.a2.forward(pred)
             loss = self.MSE(pred, yi)
-            #print(loss)
 
             grad = self.MSEGrad(pred, yi)
             grad = self.a2.backward(grad)
@@ -272,7 +241,7 @@ class FCLayer:
         #Write forward pass here
         self.input = inpu
         self.comp = inpu.dot(self.w) + self.b
-        return  self.comp
+        return self.comp
 
     def backward(self, gradients):
         #Write backward pass here
@@ -286,11 +255,10 @@ class FCLayer:
 class Sigmoid:
 
     def __init__(self):
-        self.comp = 0.0
+        self.comp = None
 
     def forward(self, input):
         # Write forward pass here
-        #input = np.array(input, dtype='float128')
         self.comp = 1 / (1 + np.exp(-input))
         return self.comp
 
