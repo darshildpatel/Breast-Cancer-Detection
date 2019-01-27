@@ -1,4 +1,4 @@
-import assignment3 as models
+import Python-Implementation as models
 import numpy as np
 
 #==========================================================Data==========================================================

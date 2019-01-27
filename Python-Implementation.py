@@ -1,7 +1,7 @@
 import numpy as np
 import copy
 
-
+=======================================================KNN Implementation==============================================================================
 class KNN:
     def __init__(self, k):
         #KNN state here
@@ -44,6 +44,8 @@ class KNN:
         return np.array(solution)
 
 
+
+=======================================================Decision Tree Implementation==========================================================================		
 import math
 class ID3:
     def __init__(self, nbins, data_range):
@@ -136,6 +138,9 @@ class ID3:
 
         return np.array(predictions)
 
+		
+		
+=======================================================Perceptron Implementation==============================================================================
 class Perceptron:
     def __init__(self, w, b, lr):
         #Perceptron state here, input initial weight matrix
@@ -182,6 +187,9 @@ class Perceptron:
             solutions.append(pred)
         return np.array(solutions)
 
+		
+
+=======================================================MultiLayered Perceptron Implementation===================================================================		
 class MLP:
     def __init__(self, w1, b1, w2, b2, lr):
         self.l1 = FCLayer(w1, b1, lr)
